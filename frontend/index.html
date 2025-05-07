@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Detection</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Using a clean, professional font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Panel: Upload and Preview -->
+            <div class="left-panel">
+                <h1>Pneumonia Detection</h1>
+                <p class="subtitle">Upload image for AI-powered insights.</p>
+
+                <div class="upload-area">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <label for="imageInput" id="uploadLabel">
+                        <span class="upload-icon">📁</span>
+                        <span id="uploadText">Select Image</span>
+                    </label>
+                </div>
+
+                <div id="previewContainer" class="preview-container">
+                    <img id="previewImage" alt="X-Ray Preview">
+                    <span id="previewPlaceholder">Image Preview Area</span>
+                </div>
+            </div>
+
+            <!-- Right Panel: Results -->
+            <div class="right-panel">
+                <!-- Area for initial message / loading / errors -->
+                <div id="messageArea" class="message-area">
+                    Awaiting image upload...
+                </div>
+
+                <!-- Loading Indicator -->
+                 <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <span>Analyzing Image...</span>
+                </div>
+
+                <!-- Results Display Area (Initially Hidden) -->
+                <div id="resultContainer" class="result-container" style="display: none;">
+                    <div class="prediction-display">
+                        <div class="prediction-main">
+                            <span id="conditionResult" class="condition-value"></span>
+                            <span id="confidenceResult" class="confidence-value"></span>
+                        </div>
+                    </div>
+                    <div id="adviceSection" class="advice-section">
+                        <h3>LLM Analysis & Suggestion:</h3>
+                        <p id="adviceResult"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="credit">By <a href="https://www.linkedin.com/in/bharath-kumar-k-75219721b/" target="_blank" rel="noopener noreferrer">Bharath Kumar K</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

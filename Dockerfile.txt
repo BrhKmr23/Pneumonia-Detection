@@ -1,0 +1,18 @@
+# 1️⃣ Use official Python 3.12 image
+FROM python:3.12
+
+# 2️⃣ Set working directory inside the container
+WORKDIR /app
+
+# 3️⃣ Copy everything from "api/" folder in your local machine to "/app" inside the container
+COPY api/ /app/
+
+# 4️⃣ Install required dependencies
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# 5️⃣ Expose port 8000 for FastAPI
+EXPOSE 8000
+
+# 6️⃣ Command to run FastAPI
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

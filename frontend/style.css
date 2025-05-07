@@ -1,0 +1,339 @@
+/* --- Base & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Purple/Violet Gradient Background - matching the image style */
+    background: linear-gradient(160deg, #a049f0 0%, #603fc1 50%, #4828a0 100%);
+    background-attachment: fixed;
+    color: #333; /* Default text color for container */
+    line-height: 1.6;
+    padding: 1rem; /* Add padding for smaller screens */
+}
+
+h1 {
+    font-size: 1.8rem; /* Slightly smaller, cleaner */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #252525; /* Light grey for title on dark background */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #252525; /* Lighter grey subtitle */
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* --- Layout --- */
+.container {
+    background: rgba(255, 255, 255, 0.95); /* Almost opaque white */
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 900px; /* Max width for the container */
+    position: relative; /* Needed for absolute positioned footer */
+    min-height: 60vh; /* Ensure minimum height */
+    display: flex; /* Use flex to easily position footer */
+    flex-direction: column; /* Stack main content and footer */
+    animation: fadeInContainer 0.8s ease-out;
+}
+
+.main-content {
+    display: flex;
+    gap: 2.5rem; /* Space between left and right panels */
+    flex-grow: 1; /* Allow main content to fill available space */
+}
+
+.left-panel,
+.right-panel {
+    flex: 1; /* Each panel takes half the space */
+    display: flex;
+    flex-direction: column;
+}
+
+.left-panel {
+    /* Styles specific to left panel, if any */
+    border-right: 1px solid #eee; /* Subtle separator */
+    padding-right: 2.5rem;
+}
+
+.right-panel {
+    /* Styles specific to right panel */
+    justify-content: center; /* Center content vertically if needed, or align top */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text within the right panel */
+}
+
+/* --- Left Panel Elements --- */
+.upload-area {
+    margin-bottom: 1.5rem;
+    text-align: center; /* Center the button */
+}
+
+#uploadLabel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #7e57c2, #5e35b1); /* Purple gradient button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(94, 53, 177, 0.3);
+}
+
+#uploadLabel:hover {
+    background: linear-gradient(135deg, #673ab7, #512da8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(94, 53, 177, 0.4);
+}
+
+.upload-icon {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.preview-container {
+    flex-grow: 1; /* Allow preview to take remaining space in left panel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0; /* Light background for preview */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    min-height: 250px; /* Minimum height */
+    position: relative; /* For placeholder positioning */
+    overflow: hidden; /* Hide overflow from image */
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 100%; /* Fit within container */
+    object-fit: contain; /* Maintain aspect ratio */
+    border-radius: 10px; /* Match container */
+    display: none; /* Hidden initially */
+}
+
+#previewPlaceholder {
+    color: #aaa;
+    font-size: 0.9rem;
+    position: absolute;
+}
+
+/* --- Right Panel Elements --- */
+
+/* Initial/Error Message Area */
+.message-area {
+    font-size: 1.1rem;
+    color: #666;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.03);
+    width: 100%; /* Take full width of right panel */
+    text-align: center;
+}
+.message-area.error {
+    background-color: rgba(211, 47, 47, 0.1); /* Light red background */
+    color: #b71c1c; /* Darker red text */
+    border: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #5e35b1; /* Purple color */
+    width: 100%;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(94, 53, 177, 0.2); /* Light purple border */
+    border-left-color: #5e35b1; /* Main spinner color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+/* Result Display */
+.result-container {
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #f8f6fc; /* Very light purple tint background */
+    border-radius: 10px;
+    border: 1px solid #e8e0f5;
+    animation: fadeInResult 0.6s ease-out;
+}
+
+.prediction-display {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.prediction-main {
+    display: flex; /* Use flex to align condition and confidence */
+    flex-direction: column; /* Stack them vertically */
+    align-items: center; /* Center horizontally */
+    gap: 0.5rem; /* Space between condition and confidence */
+}
+
+.condition-value {
+    font-size: 2.5rem; /* BIG */
+    font-weight: 700; /* BOLD */
+    color: #4828a0; /* Dark Purple */
+    line-height: 1.2;
+}
+
+.confidence-value {
+    font-size: 1.5rem; /* Large */
+    font-weight: 400; /* Medium weight */
+    color: #6a1b9a; /* Medium Purple */
+}
+
+/* Condition specific coloring for the text itself */
+.result-normal .condition-value {
+    color: #388e3c; /* Green for Normal */
+}
+.result-pneumonia .condition-value {
+    color: #d84315; /* Orange/Red for Pneumonia */
+}
+
+.advice-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: left; /* Align advice text left */
+}
+
+.advice-section h3 {
+    color: #5e35b1; /* Purple heading */
+    text-align: center; /* Center the heading itself */
+    margin-bottom: 1rem;
+}
+
+#adviceResult {
+    font-size: 0.95rem;
+    color: #444; /* Dark grey for readability */
+    line-height: 1.7;
+    background-color: #fff; /* White background for advice */
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* --- Footer --- */
+footer {
+    width: 100%;
+    text-align: right;
+    padding-top: 1.5rem; /* Space above footer */
+    margin-top: auto; /* Push footer to bottom */
+    padding-right: 1rem; /* Align with container padding */
+}
+
+.credit {
+    font-size: 0.8rem;
+    color: #999; /* Light grey for credit */
+}
+
+.credit a {
+    color: #7e57c2; /* Purple link */
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.credit a:hover {
+    color: #5e35b1; /* Darker purple on hover */
+    text-decoration: underline;
+}
+
+
+/* --- Animations --- */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInContainer {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInResult {
+     from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .main-content {
+        flex-direction: column; /* Stack panels vertically */
+        gap: 1.5rem;
+    }
+
+    .left-panel {
+        border-right: none; /* Remove border */
+        padding-right: 0;
+        border-bottom: 1px solid #eee; /* Add bottom border */
+        padding-bottom: 1.5rem;
+    }
+
+    h1 { font-size: 1.5rem; }
+    .subtitle { font-size: 0.9rem; margin-bottom: 1rem; }
+
+    .condition-value { font-size: 2rem; }
+    .confidence-value { font-size: 1.2rem; }
+
+    footer {
+        text-align: center;
+        padding-top: 1rem;
+        padding-right: 0;
+    }
+
+     .credit { font-size: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+     html { font-size: 14px; } /* Adjust base font size */
+    .container { padding: 1rem; }
+     h1 { font-size: 1.3rem; }
+     #uploadLabel { padding: 8px 16px; font-size: 0.9rem;}
+     .condition-value { font-size: 1.8rem; }
+     .confidence-value { font-size: 1.1rem; }
+     #adviceResult { font-size: 0.9rem; padding: 0.8rem; }
+}
